@@ -10,6 +10,8 @@ require __DIR__ . "/../vendor/autoload.php";
 $data = file_get_contents(__DIR__ . '/../util/Data.json');
 //convert content to an assoc array
 $decoded_data = json_decode($data, true);
+
+
 //extract products
 $list_of_products = $decoded_data['data']['products'];
 //create connection instance 
