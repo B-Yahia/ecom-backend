@@ -1,0 +1,3 @@
+/vendor/
+.env
+/public/write_data.php
