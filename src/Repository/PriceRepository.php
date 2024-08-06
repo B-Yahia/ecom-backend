@@ -22,7 +22,7 @@ class PriceRepository
 
     public function getPriceById($id): array
     {
-        return $this->conn->query('select amount from Prices where id=:id', ['id' => $id])->find();
+        return $this->conn->query('select id,amount from Prices where id=:id', ['id' => $id])->find();
     }
 
     public function getPriceCurrencyId($id): int

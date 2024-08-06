@@ -8,6 +8,8 @@ use Dotenv\Dotenv;
 
 class Setup
 {
+    private static $conn;
+
     public static function cros(string $url): void
     {
         if (isset($_SERVER['HTTP_ORIGIN'])) {
@@ -31,7 +33,7 @@ class Setup
 
         $var = Dotenv::createImmutable(__DIR__ . "/../..");
         $var->load();
-        return new Database(
+        return self::$conn ?: (self::$conn = new Database(
             $_ENV['DB_DRIVER'],
             [
                 'host' => $_ENV['DB_HOST'],
@@ -40,6 +42,6 @@ class Setup
             ],
             $_ENV['DB_USERNAME'],
             $_ENV['DB_PASSWORD']
-        );
+        ));
     }
 }

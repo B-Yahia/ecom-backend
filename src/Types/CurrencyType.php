@@ -17,7 +17,7 @@ class CurrencyType extends ObjectType
             'fields' => [
                 'id' => Type::nonNull(Type::id()),
                 'label' => Type::nonNull(Type::string()),
-                'Symbol' => Type::nonNull(Type::string()),
+                'symbol' => Type::nonNull(Type::string()),
             ],
         ];
         parent::__construct($config);

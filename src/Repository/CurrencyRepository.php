@@ -17,6 +17,6 @@ class CurrencyRepository
 
     public function getCurrencyId($id): array
     {
-        return $this->conn->query('select label,symbole from Currencies where id=:id', ['id' => $id])->find();
+        return $this->conn->query('select id,label,symbol from Currencies where id=:id', ['id' => $id])->find();
     }
 }

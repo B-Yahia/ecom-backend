@@ -19,7 +19,7 @@ class AttributeSetType extends ObjectType
                 'id' => Type::nonNull(Type::id()),
                 'name' => Type::nonNull(Type::string()),
                 'type' => Type::nonNull(Type::string()),
-                'attributes' => Type::listOf(TypeRegistry::attribute())
+                'items' => Type::listOf(TypeContainer::attribute())
             ]
         ];
         parent::__construct($config);

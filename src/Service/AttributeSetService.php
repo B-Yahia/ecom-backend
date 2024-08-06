@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Service;
 
 use Config\Database;
+use Entities\AttributeSet;
 use Repository\AttributeSetRepository;
+use Repository\RepositoryContainer;
 
 class AttributeSetService
 {
@@ -14,11 +16,11 @@ class AttributeSetService
 
     public function __construct()
     {
-        $this->attributeService = new AttributeService();
-        $this->attributeSetRepo = new AttributeSetRepository();
+        $this->attributeService = ServiceContainer::attribute();
+        $this->attributeSetRepo = RepositoryContainer::attributeSet();
     }
 
-    public function getAllAtrributeSetByProductId($productsId)
+    public function getAllAtrributeSetByProductId($productsId): array
     {
         $listOfAttributeSets = [];
         $ids = $this->attributeSetRepo->getAttributeSetsIdsByProductId($productsId);
@@ -28,10 +30,10 @@ class AttributeSetService
         return $listOfAttributeSets;
     }
 
-    public function getAttributeSetById($id)
+    public function getAttributeSetById($id): AttributeSet
     {
         $attributeSet = $this->attributeSetRepo->getAttributeSetById($id);
-        $attributeSet['attributes'] = $this->attributeService->getAllAttributesByAttributeSetId($attributeSet['id']);
-        return $attributeSet;
+        $attributeSet['items'] = $this->attributeService->getAllAttributesByAttributeSetId($attributeSet['id']);
+        return new AttributeSet($attributeSet);
     }
 }

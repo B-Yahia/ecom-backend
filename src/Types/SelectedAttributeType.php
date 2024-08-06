@@ -15,8 +15,8 @@ class SelectedAttributeType extends ObjectType
     {
         $config = [
             'fields' => [
-                'attributeSet' => Type::nonNull(TypeRegistry::attributeSet()),
-                'attribute' => Type::nonNull(TypeRegistry::attribute()),
+                'attributeSet' => Type::nonNull(TypeContainer::attributeSet()),
+                'attribute' => Type::nonNull(TypeContainer::attribute()),
             ],
         ];
 

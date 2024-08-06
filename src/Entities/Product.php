@@ -4,15 +4,22 @@ declare(strict_types=1);
 
 namespace Entities;
 
+use GraphQL\Utils\Utils;
+
 class Product
 {
-    protected $id;
-    private string $name;
-    private $inStock;
-    private array $gallery;
-    private string $description;
-    private Category $category;
-    private array $attributeSets;
-    private array $prices;
-    private string $brand;
+    public $id;
+    public string $name;
+    public $inStock;
+    public array $gallery;
+    public string $description;
+    public string $category;
+    public array $attributes;
+    public array $prices;
+    public string $brand;
+
+    public function __construct(array $data)
+    {
+        Utils::assign($this, $data);
+    }
 }

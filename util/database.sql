@@ -11,14 +11,14 @@ create table Orders(
 create table Currencies(
     id bigint unsigned auto_increment primary key,
     label text not null,
-    symbole text not null
+    symbol text not null
 );
 create table Products(
     id bigint unsigned auto_increment primary key,
     name text not null,
     brand text not null,
     description longtext ,
-    in_stock boolean not null,
+    inStock boolean not null,
     category_id bigint unsigned not null,
     foreign key (category_id) references Categories (id)
 );
@@ -57,7 +57,7 @@ create table AttributeSets (
 create table Attributes (
     id bigint unsigned auto_increment primary key , 
     value text not null , 
-    displayed_value text not null, 
+    displayValue text not null, 
     attribute_set_id bigint unsigned not null , 
     foreign key (attribute_set_id) references AttributeSets(id)
     );
@@ -76,6 +76,6 @@ INSERT INTO Categories (name) VALUES
 ('clothes'),
 ('tech');
 
-INSERT INTO Currencies (label, symbole) VALUES 
+INSERT INTO Currencies (label, symbol) VALUES 
 ('USD', '$');
 

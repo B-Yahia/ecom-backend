@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Types;
 
-final class TypeRegistry
+final class TypeContainer
 {
     private static $price;
     private static $currency;

@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Service;
 
-use Repository\PriceRepository;
+use Entities\Price;
+use Repository\RepositoryContainer;
 
 class PriceService
 {
@@ -13,8 +14,8 @@ class PriceService
 
     public function __construct()
     {
-        $this->currencyService = new CurrencyService();
-        $this->priceRepo = new PriceRepository();
+        $this->currencyService = ServiceContainer::currency();
+        $this->priceRepo = RepositoryContainer::price();;
     }
 
     public function getAllPricesByProductID($productId)
@@ -32,6 +33,7 @@ class PriceService
     {
         $priceData = $this->priceRepo->getPriceById($id);
         $priceData['currency'] = $this->currencyService->getCurrencyById($this->priceRepo->getPriceCurrencyId($id));
-        return $priceData;
+        $priceData['amount'] = (float)$priceData['amount'];
+        return new Price($priceData);
     }
 }

@@ -24,8 +24,8 @@ class ProductType extends ObjectType
                 'gallery' => Type::listOf(Type::string()),
                 'description' => Type::string(),
                 'category' => Type::nonNull(Type::string()),
-                'attributeSets' => Type::listOf(TypeRegistry::attributeSet()),
-                'price' => TypeRegistry::price(),
+                'attributes' => Type::listOf(TypeContainer::attributeSet()),
+                'prices' => TypeContainer::price(),
                 'brand' => Type::string()
             ],
         ];

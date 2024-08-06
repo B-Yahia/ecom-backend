@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Service;
 
+use Entities\Attribute;
 use Repository\AttributeRepository;
+use Repository\RepositoryContainer;
 
 class AttributeService
 {
@@ -13,7 +15,7 @@ class AttributeService
 
     public function __construct()
     {
-        $this->attributeRepo = new AttributeRepository();
+        $this->attributeRepo = RepositoryContainer::attribute();
     }
 
     public function getAllAttributesByAttributeSetId($attributeSetId): array
@@ -21,9 +23,13 @@ class AttributeService
         $listOfAttributes = [];
         $ids = $this->attributeRepo->getAttributesIdsByAttributeSetId($attributeSetId);
         foreach ($ids as $id) {
-            $attribute = $this->attributeRepo->getAttributeById($id);
-            $listOfAttributes[] = $attribute;
+            $listOfAttributes[] = $this->getAttributeById($id);
         }
         return $listOfAttributes;
+    }
+
+    public function getAttributeById($id): Attribute
+    {
+        return new Attribute($this->attributeRepo->getAttributeById($id));
     }
 }

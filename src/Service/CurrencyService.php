@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Service;
 
-use Config\Database;
-use Repository\CurrencyRepository;
+use Entities\Currency;
+use Repository\RepositoryContainer;
 
 class CurrencyService
 {
@@ -13,11 +13,12 @@ class CurrencyService
 
     public function __construct()
     {
-        $this->currencyRepo = new CurrencyRepository();
+        $this->currencyRepo = RepositoryContainer::currency();
     }
 
-    public function getCurrencyById($id): array
+    public function getCurrencyById($id): Currency
     {
-        return $this->currencyRepo->getCurrencyId($id);
+        $currency = new Currency($this->currencyRepo->getCurrencyId($id));
+        return $currency;
     }
 }

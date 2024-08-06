@@ -6,7 +6,9 @@ namespace Schema;
 
 use GraphQL\Type\Schema;
 use GraphQL\Type\SchemaConfig;
-use Types\TypeRegistry;
+use Types\MutationType;
+use Types\QueryType;
+use Types\TypeContainer;
 
 class SchemaSetup
 {
@@ -14,8 +16,8 @@ class SchemaSetup
     {
         return new Schema(
             (new SchemaConfig())
-                ->setQuery(TypeRegistry::query())
-                ->setMutation(TypeRegistry::mutation())
+                ->setQuery(new QueryType())
+                ->setMutation(new MutationType())
         );
     }
 }

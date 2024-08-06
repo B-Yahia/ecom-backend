@@ -17,7 +17,7 @@ class PriceType extends ObjectType
             'fields' => [
                 'id' => Type::nonNull(Type::id()),
                 'amount' => Type::nonNull(Type::float()),
-                'currency' => Type::listOf(TypeRegistry::currency())
+                'currency' => Type::listOf(TypeContainer::currency())
             ],
         ];
         parent::__construct($config);

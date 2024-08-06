@@ -17,7 +17,7 @@ class AttributeRepository
 
     public function getAttributeById($id)
     {
-        return $this->conn->query('Select id,value,displayed_value from Attributes where id=:id', ['id' => $id])->find();
+        return $this->conn->query('Select id,value,displayValue from Attributes where id=:id', ['id' => $id])->find();
     }
 
     public function getAttributesIdsByAttributeSetId($id): array

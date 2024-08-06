@@ -10,7 +10,7 @@ class Currency
 {
     public $id;
     public string $label;
-    public string $symbole;
+    public string $symbol;
 
     public function __construct(array $data)
     {

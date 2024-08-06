@@ -17,7 +17,7 @@ class AttributeType extends ObjectType
         $config = [
             'fields' => [
                 'id' => Type::nonNull(Type::id()),
-                'displayedValue' => Type::nonNull(Type::string()),
+                'displayValue' => Type::nonNull(Type::string()),
                 'value' => Type::nonNull(Type::string()),
             ],
         ];

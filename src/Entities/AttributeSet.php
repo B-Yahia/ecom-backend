@@ -4,10 +4,17 @@ declare(strict_types=1);
 
 namespace Entities;
 
+use GraphQL\Utils\Utils;
+
 class AttributeSet
 {
-    protected string $id;
-    private string $name;
-    private string $type;
-    private array $attributes;
+    public $id;
+    public string $name;
+    public string $type;
+    public array $items;
+
+    public function __construct(array $data)
+    {
+        Utils::assign($this, $data);
+    }
 }

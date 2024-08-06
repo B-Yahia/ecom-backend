@@ -22,7 +22,7 @@ class ProductRepository
 
     public function getProductDataById($id)
     {
-        return $this->conn->query('Select id,name,brand,description,in_stock,category_id from Products where id=:id', ['id' => $id])->find();
+        return $this->conn->query('Select id,name,brand,description,inStock from Products where id=:id', ['id' => $id])->find();
     }
 
     public function getProductCategoryId($id)
