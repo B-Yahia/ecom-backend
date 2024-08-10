@@ -6,6 +6,7 @@
       "Config\\": "src/config",
       "Entities\\": "src/Entities",
       "Types\\": "src/Types",
+      "InputTypes\\": "src/InputTypes",
       "Schema\\": "src/Schema",
       "Service\\": "src/Service",
       "Repository\\": "src/Repository",

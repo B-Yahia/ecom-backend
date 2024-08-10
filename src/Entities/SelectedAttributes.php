@@ -7,5 +7,5 @@ namespace Entities;
 class SelectedAttributes
 {
     private AttributeSet $attributeSet;
-    private Attribute $selectedAttribute;
+    private Attribute $attribute;
 }

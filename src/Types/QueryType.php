@@ -28,9 +28,16 @@ class QueryType extends ObjectType
                 ],
                 'products' => [
                     'type' => Type::listOf(TypeContainer::product()),
+                    'args' => [
+                        'category' => Type::string(),
+                    ],
                     'resolve' => function ($root, $args) {
                         $productService = ServiceContainer::product();
-                        return $productService->getAllProducts();
+                        if ($args['category'] == 'tech' || $args['category'] == 'clothes') {
+                            return $productService->getProductsByCategory($args['category']);
+                        } else {
+                            return $productService->getAllProducts();
+                        }
                     }
                 ]
             ]

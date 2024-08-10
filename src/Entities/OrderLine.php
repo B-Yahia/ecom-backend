@@ -8,6 +8,6 @@ class OrderLine
 {
     protected $id;
     private Product $product;
-    private int $quantity;
-    private array $listOfSeletedAttributes;
+    private int $units;
+    private array $seletedAttributes;
 }

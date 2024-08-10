@@ -20,6 +20,11 @@ class ProductRepository
         return $this->conn->query('Select id from Products')->findAllColumn();
     }
 
+    public function getProductsIdsByCategory($id)
+    {
+        return $this->conn->query('Select id from Products where category_id=:id', ['id' => $id])->findAllColumn();
+    }
+
     public function getProductDataById($id)
     {
         return $this->conn->query('Select id,name,brand,description,inStock from Products where id=:id', ['id' => $id])->find();

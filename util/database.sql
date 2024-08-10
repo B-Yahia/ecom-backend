@@ -72,7 +72,6 @@ create table SelectedAttributes (
 );
 
 INSERT INTO Categories (name) VALUES 
-('all'),
 ('clothes'),
 ('tech');
 

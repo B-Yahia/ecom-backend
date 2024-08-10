@@ -2,22 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Types;
+namespace InputTypes;
 
-use GraphQL\Type\Definition\ObjectType;
+use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\Type;
 
-require __DIR__ . "/../../vendor/autoload.php";
-
-class PriceType extends ObjectType
+class CurrencyInputType extends InputObjectType
 {
     public function __construct()
     {
         $config = [
             'fields' => [
                 'id' => Type::nonNull(Type::id()),
-                'amount' => Type::nonNull(Type::float()),
-                'currency' => TypeContainer::currency()
+                'symbol' => Type::string(),
+                'label' => Type::string()
             ],
         ];
         parent::__construct($config);

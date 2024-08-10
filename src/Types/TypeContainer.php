@@ -12,6 +12,7 @@ final class TypeContainer
     private static $product;
     private static $orderline;
     private static $selectedAttributes;
+    private static $order;
     private static $query;
     private static $mutation;
 
@@ -58,5 +59,9 @@ final class TypeContainer
     public static function mutation()
     {
         return self::$mutation ?: (self::$mutation = new MutationType());
+    }
+    public static function order()
+    {
+        return self::$order ?: (self::$order = new OrderType());
     }
 }

@@ -47,4 +47,15 @@ class ProductService
         }
         return $listOfProducts;
     }
+
+    public function getProductsByCategory(string $category)
+    {
+        $listOfProducts = [];
+        $category_id = $this->categoryRepo->getCategoryIdByName($category);
+        $ids = $this->productRepo->getProductsIdsByCategory($category_id);
+        foreach ($ids as $id) {
+            $listOfProducts[] = $this->getProductById($id);
+        }
+        return $listOfProducts;
+    }
 }

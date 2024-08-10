@@ -14,6 +14,9 @@ class RepositoryContainer
     private static $imagesUrlRepository;
     private static $priceRepository;
     private static $productRepository;
+    private static $orderRepository;
+    private static $orderlineRepository;
+    private static $selectedAttributeRepository;
 
 
     public static function attribute()
@@ -43,5 +46,17 @@ class RepositoryContainer
     public static function product()
     {
         return self::$productRepository ?: (self::$productRepository = new ProductRepository());
+    }
+    public static function order()
+    {
+        return self::$orderRepository ?: (self::$orderRepository = new OrderRepository());
+    }
+    public static function orderline()
+    {
+        return self::$orderlineRepository ?: (self::$orderlineRepository = new OrderlineRepository());
+    }
+    public static function selectedAttribute()
+    {
+        return self::$selectedAttributeRepository ?: (self::$selectedAttributeRepository = new SelectedAttributeRepository());
     }
 }

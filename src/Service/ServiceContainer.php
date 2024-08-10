@@ -11,6 +11,9 @@ class ServiceContainer
     private static $currencyService;
     private static $priceService;
     private static $productService;
+    private static $orderService;
+    private static $orderlineService;
+    private static $selectedAttributes;
 
     public static function attribute()
     {
@@ -31,5 +34,17 @@ class ServiceContainer
     public static function product()
     {
         return self::$productService ?: (self::$productService = new ProductService());
+    }
+    public static function order()
+    {
+        return self::$orderService ?: (self::$orderService = new OrderService());
+    }
+    public static function orderline()
+    {
+        return self::$orderlineService ?: (self::$orderlineService = new OrderlineService());
+    }
+    public static function selectedAttributes()
+    {
+        return self::$selectedAttributes ?: (self::$selectedAttributes = new SelectedAttributeService());
     }
 }
