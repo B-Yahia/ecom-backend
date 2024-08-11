@@ -7,14 +7,15 @@ namespace InputTypes;
 use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\Type;
 
-class OrderInputType extends InputObjectType
+class CurrencyInput extends InputObjectType
 {
     public function __construct()
     {
         $config = [
             'fields' => [
-                'total' => Type::nonNull(Type::float()),
-                'orderlines' => Type::listOf(InputTypeContainer::orderline())
+                'id' => Type::nonNull(Type::id()),
+                'symbol' => Type::string(),
+                'label' => Type::string()
             ],
         ];
         parent::__construct($config);

@@ -7,7 +7,7 @@ namespace InputTypes;
 use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\Type;
 
-class ProductInputType extends InputObjectType
+class ProductInput extends InputObjectType
 {
     public function __construct()
     {

@@ -15,34 +15,17 @@ class MutationType extends ObjectType
     {
         $config = [
             'fields' => [
-                'test' => [
-                    'type' => Type::boolean(),
+                'addOrder' => [
+                    'type' => Type::id(),
                     'args' => [
-                        'order' => ['type' => Type::string()],
+                        'order' => ['type' => InputTypeContainer::order()],
                     ],
                     'resolve' => function ($root, $args) {
                         // $orderService = ServiceContainer::order();
-                        // return $orderService->saveOrder($args['order']);
-                        echo var_dump($args);
-                        return true;
-                    }
-                ],
-                'test1' => [
-                    'type' => Type::string(),
-                    'args' => [
-                        'name' => ['type' => Type::string()],
-                    ],
-                    'resolve' => function ($root, $args) {
-                        return 'hello' . $args['name'];
-                    }
-                ],
-                'test2' => [
-                    'type' => Type::string(),
-                    'args' => [
-                        'product' => ['type' => InputTypeContainer::product()],
-                    ],
-                    'resolve' => function ($root, $args) {
-                        return 'Product name is ' . $args['produc']['name'];
+
+                        // $orderService->saveOrder($args['order']);
+
+                        return 'Here is the recieved data : ' . $args['order']['orderlines'][0]['product']['id'];
                     }
                 ]
             ],

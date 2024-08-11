@@ -7,15 +7,16 @@ namespace InputTypes;
 use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\Type;
 
-class AttributeInputType extends InputObjectType
+class AttributeSetInput extends InputObjectType
 {
     public function __construct()
     {
         $config = [
             'fields' => [
                 'id' => Type::nonNull(Type::id()),
-                'displayValue' => Type::string(),
-                'value' => Type::string()
+                'name' => Type::string(),
+                'type' => Type::string(),
+                'items' => Type::listOf(InputTypeContainer::attribute())
             ],
         ];
         parent::__construct($config);

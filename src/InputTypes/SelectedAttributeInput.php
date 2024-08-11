@@ -7,7 +7,7 @@ namespace InputTypes;
 use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\Type;
 
-class SelectedAttributeInpuType extends InputObjectType
+class SelectedAttributeInput extends InputObjectType
 {
     public function __construct()
     {
