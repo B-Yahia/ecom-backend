@@ -23,4 +23,12 @@ class OrderlineRepository
             'order_id' => $data['order_id']
         ])->id();
     }
+    public function getOrderlineById($id)
+    {
+        return $this->conn->query('Select product_id,count from Orderlines where id=:id', ['id' => $id])->find();
+    }
+    public function getOrderlinesIdsByOrderId($id)
+    {
+        return $this->conn->query('Select id from Orderlines where order_id=:id', ['id' => $id])->findAllColumn();
+    }
 }

@@ -4,8 +4,14 @@ declare(strict_types=1);
 
 namespace Entities;
 
+use GraphQL\Utils\Utils;
+
 class SelectedAttributes
 {
-    private AttributeSet $attributeSet;
-    private Attribute $attribute;
+    public AttributeSet $attributeSet;
+    public Attribute $attribute;
+    public function __construct(array $data)
+    {
+        Utils::assign($this, $data);
+    }
 }

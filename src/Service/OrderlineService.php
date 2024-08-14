@@ -4,16 +4,19 @@ declare(strict_types=1);
 
 namespace Service;
 
+use Entities\OrderLine;
 use Repository\RepositoryContainer;
 
 class OrderlineService
 {
     private $orderlineRepo;
     private $selectedAttributeService;
+    private $productService;
     public function __construct()
     {
         $this->orderlineRepo = RepositoryContainer::orderline();
         $this->selectedAttributeService = ServiceContainer::selectedAttributes();
+        $this->productService = ServiceContainer::product();
     }
     public function saveOrderline($data)
     {
@@ -22,12 +25,35 @@ class OrderlineService
             'units' => $data['orderline']['units'],
             'product_id' => $data['orderline']['product']['id']
         ]);
-        foreach ($data['selectedAttributes'] as $selectedAttribute) {
+        foreach ($data['orderline']['selectedAttributes'] as $selectedAttribute) {
             $this->selectedAttributeService->saveSelectedAttribute([
                 'orderline_id' => $id,
-                'attributeSet_id' => $selectedAttribute['attributeSet']['id'],
+                'attribute_set_id' => $selectedAttribute['attributeSet']['id'],
                 'attribute_id' => $selectedAttribute['attribute']['id']
             ]);
         }
+    }
+
+    public function getOrderlineById($id)
+    {
+        $orderlineData = $this->orderlineRepo->getOrderlineById($id);
+        $product = $this->productService->getProductById($orderlineData['product_id']);
+        $listOfSelectedAttributes = $this->selectedAttributeService->getAllSelectedAttributesByOrderlineId($id);
+        return new OrderLine([
+            'id' => $id,
+            'units' => $orderlineData['count'],
+            'product' => $product,
+            'selectedAttributes' => $listOfSelectedAttributes
+        ]);
+    }
+
+    public function getOrderlinesByOrderId($id): array
+    {
+        $ids = $this->orderlineRepo->getOrderlinesIdsByOrderId($id);
+        $listOfOrderlines = [];
+        foreach ($ids as $orderlineId) {
+            $listOfOrderlines[] = $this->getOrderlineById($orderlineId);
+        }
+        return $listOfOrderlines;
     }
 }

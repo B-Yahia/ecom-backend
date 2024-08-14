@@ -10,6 +10,8 @@ use GraphQL\Type\Definition\Type;
 use Repository\CurrencyRepository;
 use Service\ServiceContainer;
 
+use function PHPSTORM_META\type;
+
 class QueryType extends ObjectType
 {
     public function __construct()
@@ -39,7 +41,37 @@ class QueryType extends ObjectType
                             return $productService->getAllProducts();
                         }
                     }
+                ],
+                'getSelectedAttribute' => [
+                    'type' => TypeContainer::selectedAttributes(),
+                    'resolve' => function ($root, $args) {
+                        $selectedAttributeService = ServiceContainer::selectedAttributes();
+                        $var = $selectedAttributeService->getSelectedAttributeByAttributeAndAttributeSetIDS(
+                            [
+                                'attribute_id' => 1,
+                                'attributeSet_id' => 1,
+                            ]
+                        );
+                        return $var;
+                    }
+                ],
+                'getOrderline' => [
+                    'type' => TypeContainer::orderline(),
+                    'resolve' => function ($root, $args) {
+                        $orderlineService = ServiceContainer::orderline();
+                        return $orderlineService->getOrderlineById(2);
+                    }
+                ],
+                'getOrder' => [
+                    'type' => TypeContainer::order(),
+                    'resolve' => function ($root, $args) {
+                        $orderlineService = ServiceContainer::order();
+                        $var = $orderlineService->getOrderById(3);
+                        // echo var_dump($var);
+                        return $var;
+                    }
                 ]
+
             ]
         ];
         parent::__construct($config);

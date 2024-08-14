@@ -19,43 +19,43 @@ class RepositoryContainer
     private static $selectedAttributeRepository;
 
 
-    public static function attribute()
+    public static function attribute(): AttributeRepository
     {
         return self::$attributeRepository ?: (self::$attributeRepository = new AttributeRepository());
     }
-    public static function attributeSet()
+    public static function attributeSet(): AttributeSetRepository
     {
         return self::$attributeSetRepository ?: (self::$attributeSetRepository = new AttributeSetRepository());
     }
-    public static function category()
+    public static function category(): CategoryRepository
     {
         return self::$categoryRepository ?: (self::$categoryRepository = new CategoryRepository());
     }
-    public static function currency()
+    public static function currency(): CurrencyRepository
     {
         return self::$currencyRepository ?: (self::$currencyRepository = new CurrencyRepository());
     }
-    public static function imageUrl()
+    public static function imageUrl(): ImagesUrlRepository
     {
         return self::$imagesUrlRepository ?: (self::$imagesUrlRepository = new ImagesUrlRepository());
     }
-    public static function price()
+    public static function price(): PriceRepository
     {
         return self::$priceRepository ?: (self::$priceRepository = new PriceRepository());
     }
-    public static function product()
+    public static function product(): ProductRepository
     {
         return self::$productRepository ?: (self::$productRepository = new ProductRepository());
     }
-    public static function order()
+    public static function order(): OrderRepository
     {
         return self::$orderRepository ?: (self::$orderRepository = new OrderRepository());
     }
-    public static function orderline()
+    public static function orderline(): OrderlineRepository
     {
         return self::$orderlineRepository ?: (self::$orderlineRepository = new OrderlineRepository());
     }
-    public static function selectedAttribute()
+    public static function selectedAttribute(): SelectedAttributeRepository
     {
         return self::$selectedAttributeRepository ?: (self::$selectedAttributeRepository = new SelectedAttributeRepository());
     }

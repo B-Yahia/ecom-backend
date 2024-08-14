@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Service;
 
+use Entities\Order;
 use Repository\RepositoryContainer;
 
 class OrderService
@@ -17,7 +18,7 @@ class OrderService
     }
     public function saveOrder($data)
     {
-        $id = $this->orderRepo->saveOrder($data['amount']);
+        $id = $this->orderRepo->saveOrder($data['total']);
         foreach ($data['orderlines'] as $orderline) {
             $this->orderlineService->saveOrderline(
                 [
@@ -26,5 +27,17 @@ class OrderService
                 ]
             );
         }
+        return $id;
+    }
+
+    public function getOrderById($id): Order
+    {
+        $total = $this->orderRepo->getOrderTotal($id);
+        $listOfOrderLines = $this->orderlineService->getOrderlinesByOrderId($id);
+        return new Order([
+            'id' => $id,
+            'total' => floatval($total),
+            'orderlines' => $listOfOrderLines,
+        ]);
     }
 }

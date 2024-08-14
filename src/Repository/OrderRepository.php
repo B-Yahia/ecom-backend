@@ -17,6 +17,11 @@ class OrderRepository
 
     public function saveOrder($amount)
     {
-        return $this->conn->query('Insert into Orders (amount) values (:amount)', ['amount' => $amount])->id();
+        return $this->conn->query('Insert into Orders (total) values (:total)', ['total' => $amount])->id();
+    }
+
+    public function getOrderTotal($id)
+    {
+        return $this->conn->query('SELECT total from Orders where id=:id', ['id' => $id])->findColumn();
     }
 }

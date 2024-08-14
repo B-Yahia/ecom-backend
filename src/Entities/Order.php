@@ -4,9 +4,16 @@ declare(strict_types=1);
 
 namespace Entities;
 
+use GraphQL\Utils\Utils;
+
 class Order
 {
-    protected $id;
-    private array $orderLines;
-    private float $total;
+    public $id;
+    public array $orderlines;
+    public float $total;
+
+    public function __construct(array $data)
+    {
+        Utils::assign($this, $data);
+    }
 }

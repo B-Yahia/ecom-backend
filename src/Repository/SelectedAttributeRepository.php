@@ -22,4 +22,9 @@ class SelectedAttributeRepository
             'attribute_set_id' => $data['attribute_set_id'],
         ]);
     }
+
+    public function getAllSelectedAttributeByOrderlineId($id)
+    {
+        return $this->conn->query('Select attribute_id ,attribute_set_id from SelectedAttributes where orderline_id=:id', ['id' => $id])->findAll();
+    }
 }

@@ -15,35 +15,35 @@ class ServiceContainer
     private static $orderlineService;
     private static $selectedAttributes;
 
-    public static function attribute()
+    public static function attribute(): AttributeService
     {
         return self::$attributeService ?: (self::$attributeService = new AttributeService());
     }
-    public static function attributeSet()
+    public static function attributeSet(): AttributeSetService
     {
         return self::$attributeSetService ?: (self::$attributeSetService = new AttributeSetService());
     }
-    public static function currency()
+    public static function currency(): CurrencyService
     {
         return self::$currencyService ?: (self::$currencyService = new CurrencyService());
     }
-    public static function price()
+    public static function price(): PriceService
     {
         return self::$priceService ?: (self::$priceService = new PriceService());
     }
-    public static function product()
+    public static function product(): ProductService
     {
         return self::$productService ?: (self::$productService = new ProductService());
     }
-    public static function order()
+    public static function order(): OrderService
     {
         return self::$orderService ?: (self::$orderService = new OrderService());
     }
-    public static function orderline()
+    public static function orderline(): OrderlineService
     {
         return self::$orderlineService ?: (self::$orderlineService = new OrderlineService());
     }
-    public static function selectedAttributes()
+    public static function selectedAttributes(): SelectedAttributeService
     {
         return self::$selectedAttributes ?: (self::$selectedAttributes = new SelectedAttributeService());
     }
