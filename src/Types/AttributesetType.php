@@ -9,7 +9,7 @@ use GraphQL\Type\Definition\Type;
 
 require __DIR__ . "/../../vendor/autoload.php";
 
-class AttributeSetType extends ObjectType
+class AttributesetType extends ObjectType
 {
 
     public function __construct()

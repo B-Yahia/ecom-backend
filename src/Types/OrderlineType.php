@@ -16,9 +16,9 @@ class OrderlineType extends ObjectType
         $config = [
             'fields' => [
                 'id' => Type::id(),
-                'product' => Type::nonNull(TypeContainer::product()),
+                'product' => Type::nonNull(new ProductType()),
                 'units' => Type::nonNull(Type::int()),
-                'selectedAttributes' => Type::listOf(TypeContainer::selectedAttributes())
+                'selectedAttributes' => Type::listOf(new SelectedAttributeType())
             ]
         ];
         parent::__construct($config);

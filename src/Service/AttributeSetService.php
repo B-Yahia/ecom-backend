@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Service;
 
-use Config\Database;
-use Entities\AttributeSet;
-use Repository\AttributeSetRepository;
+use Entities\Attributeset;
+use Exception;
 use Repository\RepositoryContainer;
 
 class AttributeSetService
@@ -30,10 +29,10 @@ class AttributeSetService
         return $listOfAttributeSets;
     }
 
-    public function getAttributeSetById($id): AttributeSet
+    public function getAttributeSetById($id): Attributeset
     {
         $attributeSet = $this->attributeSetRepo->getAttributeSetById($id);
         $attributeSet['items'] = $this->attributeService->getAllAttributesByAttributeSetId($attributeSet['id']);
-        return new AttributeSet($attributeSet);
+        return new Attributeset($attributeSet);
     }
 }

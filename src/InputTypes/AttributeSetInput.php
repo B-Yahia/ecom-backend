@@ -16,7 +16,7 @@ class AttributeSetInput extends InputObjectType
                 'id' => Type::nonNull(Type::id()),
                 'name' => Type::string(),
                 'type' => Type::string(),
-                'items' => Type::listOf(InputTypeContainer::attribute())
+                'items' => Type::listOf(new AttributeInput())
             ],
         ];
         parent::__construct($config);

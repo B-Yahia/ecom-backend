@@ -14,9 +14,9 @@ class OrderlineInput extends InputObjectType
         $config = [
             'fields' => [
                 'id' => Type::id(),
-                'product' => Type::nonNull(InputTypeContainer::product()),
+                'product' => Type::nonNull(new ProductInput()),
                 'units' => Type::nonNull(Type::int()),
-                'selectedAttributes' => Type::listOf(InputTypeContainer::selectedAttribute())
+                'selectedAttributes' => Type::listOf(new SelectedAttributeInput())
             ],
         ];
         parent::__construct($config);

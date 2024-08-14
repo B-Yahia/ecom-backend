@@ -6,12 +6,12 @@ namespace Entities;
 
 use GraphQL\Utils\Utils;
 
-class AttributeSet
+class Orderline
 {
     public $id;
-    public string $name;
-    public string $type;
-    public array $items;
+    public Product $product;
+    public int $units;
+    public array $seletedAttributes;
 
     public function __construct(array $data)
     {

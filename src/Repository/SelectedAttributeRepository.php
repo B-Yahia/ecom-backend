@@ -16,10 +16,10 @@ class SelectedAttributeRepository
     }
     public function saveSelectedAttribute($data)
     {
-        $this->conn->query('INSERT into SelectedAttributes (orderline_id ,attribute_id ,attribute_set_id ) values (:orderline_id ,:attribute_id ,:attribute_set_id )', [
+        $this->conn->query('INSERT into SelectedAttributes (orderline_id ,attribute_id ,attributeSet_id ) values (:orderline_id ,:attribute_id ,:attributeSet_id )', [
             'orderline_id' => $data['orderline_id'],
             'attribute_id' => $data['attribute_id'],
-            'attribute_set_id' => $data['attribute_set_id'],
+            'attributeSet_id' => $data['attributeSet_id'],
         ]);
     }
 }

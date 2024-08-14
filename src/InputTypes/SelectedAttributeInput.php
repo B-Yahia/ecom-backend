@@ -13,8 +13,8 @@ class SelectedAttributeInput extends InputObjectType
     {
         $config = [
             'fields' => [
-                'attributeSet' => Type::nonNull(InputTypeContainer::attributeSet()),
-                'attribute' => Type::nonNull(InputTypeContainer::attribute())
+                'attributeSet' => Type::nonNull(new AttributeSetInput()),
+                'attribute' => Type::nonNull(new AttributeInput())
             ],
         ];
         parent::__construct($config);

@@ -40,7 +40,7 @@ create table Prices (
 create table Orderlines (
     id bigint unsigned auto_increment primary key,
     product_id bigint unsigned not null, 
-    count int not null,
+    units int not null,
     order_id bigint unsigned not null ,
     foreign key (product_id) references Products (id),
     foreign key (order_id) references Orders (id) 
@@ -58,15 +58,15 @@ create table Attributes (
     id bigint unsigned auto_increment primary key , 
     value text not null , 
     displayValue text not null, 
-    attribute_set_id bigint unsigned not null , 
-    foreign key (attribute_set_id) references AttributeSets(id)
+    attributeSet_id bigint unsigned not null , 
+    foreign key (attributeSet_id) references AttributeSets(id)
     );
 
 create table SelectedAttributes ( 
-    attribute_set_id bigint unsigned not null,
+    attributeSet_id bigint unsigned not null,
     attribute_id bigint unsigned not null,
     orderline_id bigint unsigned not null,
-    foreign key (attribute_set_id) references AttributeSets(id),
+    foreign key (attributeSet_id) references AttributeSets(id),
     foreign key (attribute_id) references Attributes(id),
     foreign key (orderline_id) references Orderlines (id)
 );
@@ -77,4 +77,26 @@ INSERT INTO Categories (name) VALUES
 
 INSERT INTO Currencies (label, symbol) VALUES 
 ('USD', '$');
+
+drop table SelectedAttributes,Orderlines,Orders;
+create table Orders(
+    id bigint unsigned auto_increment primary key,
+    total decimal(10,2) not null
+);
+create table Orderlines (
+    id bigint unsigned auto_increment primary key,
+    product_id bigint unsigned not null, 
+    units int not null,
+    order_id bigint unsigned not null ,
+    foreign key (product_id) references Products (id),
+    foreign key (order_id) references Orders (id) 
+);
+create table SelectedAttributes ( 
+    attributeSet_id bigint unsigned not null,
+    attribute_id bigint unsigned not null,
+    orderline_id bigint unsigned not null,
+    foreign key (attributeSet_id) references AttributeSets(id),
+    foreign key (attribute_id) references Attributes(id),
+    foreign key (orderline_id) references Orderlines (id)
+);
 

@@ -19,8 +19,8 @@ class ProductInput extends InputObjectType
                 'gallery' => Type::listOf(Type::string()),
                 'description' => Type::string(),
                 'category' => Type::string(),
-                'attributes' => Type::listOf(InputTypeContainer::attributeSet()),
-                'prices' => Type::listOf(InputTypeContainer::price()),
+                'attributes' => Type::listOf(new AttributeSetInput()),
+                'prices' => Type::listOf(new PriceInput()),
                 'brand' => Type::string()
             ],
         ];

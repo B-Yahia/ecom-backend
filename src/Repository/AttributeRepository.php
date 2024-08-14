@@ -22,6 +22,6 @@ class AttributeRepository
 
     public function getAttributesIdsByAttributeSetId($id): array
     {
-        return $this->conn->query('select id from Attributes where attribute_set_id=:id', ['id' => $id])->findAllColumn();
+        return $this->conn->query('select id from Attributes where attributeSet_id=:id', ['id' => $id])->findAllColumn();
     }
 }

@@ -6,10 +6,6 @@ namespace Controller;
 
 use RuntimeException;
 use GraphQL\GraphQL as GraphQLBase;
-use GraphQL\Type\Definition\ObjectType;
-use GraphQL\Type\Definition\Type;
-use GraphQL\Type\Schema;
-use GraphQL\Type\SchemaConfig;
 use Schema\SchemaSetup;
 use Throwable;
 
@@ -26,8 +22,8 @@ class GraphQL
             $input = json_decode($rawInput, true);
             $query = $input['query'];
             $variableValues = $input['variables'] ?? null;
-
             $rootValue = ['prefix' => 'You said: '];
+            echo "12";
             $result = GraphQLBase::executeQuery(SchemaSetup::getSchema(), $query, $rootValue, null, $variableValues);
             $output = $result->toArray();
         } catch (Throwable $e) {

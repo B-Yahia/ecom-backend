@@ -28,7 +28,7 @@ class ProductService
         $this->categoryRepo = RepositoryContainer::category();
     }
 
-    public function getProductById($id)
+    public function getProductById($id): Product
     {
         $productData = $this->productRepo->getProductDataById($id);
         $productData['category'] = $this->categoryRepo->getCategoryNameById($this->productRepo->getProductCategoryId($id));

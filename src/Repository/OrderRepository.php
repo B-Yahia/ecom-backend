@@ -15,8 +15,9 @@ class OrderRepository
         $this->conn = Setup::database();
     }
 
-    public function saveOrder($amount)
+    public function saveOrder($total)
+
     {
-        return $this->conn->query('Insert into Orders (amount) values (:amount)', ['amount' => $amount])->id();
+        return $this->conn->query('Insert into Orders (total) values (:total)', ['total' => $total])->id();
     }
 }

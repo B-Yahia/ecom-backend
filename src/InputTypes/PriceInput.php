@@ -15,7 +15,7 @@ class PriceInput extends InputObjectType
             'fields' => [
                 'id' => Type::nonNull(Type::id()),
                 'amount' => Type::float(),
-                'currency' => Type::nonNull(InputTypeContainer::currency())
+                'currency' => Type::nonNull(new CurrencyInput())
             ],
         ];
         parent::__construct($config);

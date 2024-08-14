@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Service;
 
 use Entities\Attribute;
-use Repository\AttributeRepository;
+use Entities\EntityContainer;
 use Repository\RepositoryContainer;
 
 class AttributeService

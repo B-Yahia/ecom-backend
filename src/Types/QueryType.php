@@ -7,6 +7,8 @@ namespace Types;
 use Entities\Currency;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
+use InputTypes\CurrencyInput;
+use InputTypes\InputTypeContainer;
 use Repository\CurrencyRepository;
 use Service\ServiceContainer;
 
@@ -39,7 +41,27 @@ class QueryType extends ObjectType
                             return $productService->getAllProducts();
                         }
                     }
-                ]
+                ],
+                'orderline' => [
+                    'type' => TypeContainer::orderline(),
+                    'args' => [
+                        'id' => ['type' => Type::nonNull(Type::id())],
+                    ],
+                    'resolve' => function ($root, $args) {
+                        $orderService = ServiceContainer::orderline();
+                        return $orderService->getOrderlineById($args['id']);
+                    }
+                ],
+                'getSelectedAttribute' => [
+                    'type' => new SelectedAttributeType(),
+                    'resolve' => function ($root, $args) {
+                        $selectedAttributeService = ServiceContainer::selectedAttributes();
+                        return $selectedAttributeService->getSelectedAttributeByAttributeIdAndAttributeSetId([
+                            'attribute_id' => 1,
+                            'attributeSet_id' => 1,
+                        ]);
+                    }
+                ],
             ]
         ];
         parent::__construct($config);

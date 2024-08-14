@@ -14,7 +14,7 @@ class OrderInput extends InputObjectType
         $config = [
             'fields' => [
                 'total' => Type::nonNull(Type::float()),
-                'orderlines' => Type::listOf(InputTypeContainer::orderline())
+                // 'orderlines' => Type::listOf(new OrderlineInput())
             ],
         ];
         parent::__construct($config);

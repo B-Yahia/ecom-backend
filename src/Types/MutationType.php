@@ -16,18 +16,27 @@ class MutationType extends ObjectType
         $config = [
             'fields' => [
                 'addOrder' => [
-                    'type' => Type::id(),
+                    'type' => Type::string(),
                     'args' => [
                         'order' => ['type' => InputTypeContainer::order()],
                     ],
                     'resolve' => function ($root, $args) {
-                        // $orderService = ServiceContainer::order();
-
-                        // $orderService->saveOrder($args['order']);
-
-                        return 'Here is the recieved data : ' . $args['order']['orderlines'][0]['product']['id'];
+                        $orderService = ServiceContainer::order();
+                        $order = $orderService->saveOrder($args['order']);
+                        return "hello";
+                    }
+                ],
+                'test' => [
+                    'type' => Type::string(),
+                    'args' => [
+                        'id' => ['type' => Type::id()],
+                    ],
+                    'resolve' => function ($root, $args) {
+                        echo var_dump($args);
+                        return "hello " . $args['id'];
                     }
                 ]
+
             ],
         ];
         parent::__construct($config);

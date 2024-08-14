@@ -6,11 +6,12 @@ namespace Entities;
 
 use GraphQL\Utils\Utils;
 
-class Order
+class Attributeset
 {
     public $id;
-    public array $orderlines;
-    public float $total;
+    public string $name;
+    public string $type;
+    public array $items;
 
     public function __construct(array $data)
     {

@@ -8,7 +8,6 @@ use GraphQL\Type\Schema;
 use GraphQL\Type\SchemaConfig;
 use Types\MutationType;
 use Types\QueryType;
-use Types\TypeContainer;
 
 class SchemaSetup
 {

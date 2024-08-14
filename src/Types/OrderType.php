@@ -16,7 +16,7 @@ class OrderType extends ObjectType
         $config = [
             'fields' => [
                 'id' => Type::id(),
-                'orderlines' => Type::listOf(TypeContainer::orderline()),
+                'orderlines' => Type::listOf(TypeContainer::order()),
                 'total' => Type::nonNull(Type::float())
             ]
         ];
