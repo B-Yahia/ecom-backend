@@ -36,13 +36,11 @@ class SelectedAttributeService
     public function getAllSelectedAttributesByOrderlineId($id): array
     {
         $selectedAttributesData = $this->selectedAttributeRepo->getAllSelectedAttributeByOrderlineId($id);
-        $listOfSelectedAttributes = [];
-        foreach ($selectedAttributesData as $item) {
-            $listOfSelectedAttributes[] = $this->getSelectedAttributeByAttributeAndAttributeSetIDS([
+        return array_map(function ($item) {
+            return $this->getSelectedAttributeByAttributeAndAttributeSetIDS([
                 'attribute_id' => $item['attribute_id'],
                 'attributeSet_id' => $item['attribute_set_id'],
             ]);
-        }
-        return $listOfSelectedAttributes;
+        }, $selectedAttributesData);
     }
 }

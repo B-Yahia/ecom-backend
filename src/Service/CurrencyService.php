@@ -18,7 +18,6 @@ class CurrencyService
 
     public function getCurrencyById($id): Currency
     {
-        $currency = new Currency($this->currencyRepo->getCurrencyId($id));
-        return $currency;
+        return new Currency($this->currencyRepo->getCurrencyId($id));
     }
 }

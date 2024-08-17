@@ -42,35 +42,22 @@ class QueryType extends ObjectType
                         }
                     }
                 ],
-                'getSelectedAttribute' => [
-                    'type' => TypeContainer::selectedAttributes(),
-                    'resolve' => function ($root, $args) {
-                        $selectedAttributeService = ServiceContainer::selectedAttributes();
-                        $var = $selectedAttributeService->getSelectedAttributeByAttributeAndAttributeSetIDS(
-                            [
-                                'attribute_id' => 1,
-                                'attributeSet_id' => 1,
-                            ]
-                        );
-                        return $var;
-                    }
-                ],
-                'getOrderline' => [
-                    'type' => TypeContainer::orderline(),
-                    'resolve' => function ($root, $args) {
-                        $orderlineService = ServiceContainer::orderline();
-                        return $orderlineService->getOrderlineById(2);
-                    }
-                ],
                 'getOrder' => [
                     'type' => TypeContainer::order(),
+                    'args' => ['id' => Type::id()],
                     'resolve' => function ($root, $args) {
-                        $orderlineService = ServiceContainer::order();
-                        $var = $orderlineService->getOrderById(3);
-                        // echo var_dump($var);
-                        return $var;
+                        $orderService = ServiceContainer::order();
+                        return $orderService->getOrderById($args['id']);
+                    }
+                ],
+                'orders' => [
+                    'type' => Type::listOf(TypeContainer::order()),
+                    'resolve' => function ($root, $args) {
+                        $orderService = ServiceContainer::order();
+                        return $orderService->getAllOrders();
                     }
                 ]
+
 
             ]
         ];

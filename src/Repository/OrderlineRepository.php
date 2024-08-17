@@ -4,16 +4,8 @@ declare(strict_types=1);
 
 namespace Repository;
 
-use Config\Setup;
-
-class OrderlineRepository
+class OrderlineRepository extends AbstractRepository
 {
-    private $conn;
-
-    public function __construct()
-    {
-        $this->conn = Setup::database();
-    }
 
     public function saveOrderLine($data)
     {
@@ -30,5 +22,9 @@ class OrderlineRepository
     public function getOrderlinesIdsByOrderId($id)
     {
         return $this->conn->query('Select id from Orderlines where order_id=:id', ['id' => $id])->findAllColumn();
+    }
+    public function getNumberOfUnitsInOrderline($id)
+    {
+        return $this->conn->query('Select count from Orderlines where id=:id', ['id' => $id])->findColumn();
     }
 }

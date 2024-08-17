@@ -12,6 +12,7 @@ Setup::cros('*');
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->post('/graphql', [GraphQL::class, 'handle']);
     $r->get('/graphql', [GraphQL::class, 'handle']);
+    $r->get('/', [GraphQL::class, 'home']);
 });
 
 $routeInfo = $dispatcher->dispatch(

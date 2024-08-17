@@ -7,6 +7,8 @@ namespace Service;
 use Entities\OrderLine;
 use Repository\RepositoryContainer;
 
+use function PHPSTORM_META\map;
+
 class OrderlineService
 {
     private $orderlineRepo;
@@ -50,10 +52,6 @@ class OrderlineService
     public function getOrderlinesByOrderId($id): array
     {
         $ids = $this->orderlineRepo->getOrderlinesIdsByOrderId($id);
-        $listOfOrderlines = [];
-        foreach ($ids as $orderlineId) {
-            $listOfOrderlines[] = $this->getOrderlineById($orderlineId);
-        }
-        return $listOfOrderlines;
+        return empty($ids) ? [] : array_map([$this, 'getOrderlineById'], $ids);
     }
 }

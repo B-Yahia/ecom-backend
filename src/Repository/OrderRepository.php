@@ -4,17 +4,8 @@ declare(strict_types=1);
 
 namespace Repository;
 
-use Config\Setup;
-
-class OrderRepository
+class OrderRepository extends AbstractRepository
 {
-    private $conn;
-
-    public function __construct()
-    {
-        $this->conn = Setup::database();
-    }
-
     public function saveOrder($amount)
     {
         return $this->conn->query('Insert into Orders (total) values (:total)', ['total' => $amount])->id();
@@ -23,5 +14,9 @@ class OrderRepository
     public function getOrderTotal($id)
     {
         return $this->conn->query('SELECT total from Orders where id=:id', ['id' => $id])->findColumn();
+    }
+    public function getOrdersIds()
+    {
+        return $this->conn->query('SELECT id FROM Orders')->findAllColumn();
     }
 }

@@ -34,28 +34,20 @@ class ProductService
         $productData['category'] = $this->categoryRepo->getCategoryNameById($this->productRepo->getProductCategoryId($id));
         $productData['prices'] = $this->priceService->getAllPricesByProductID($id);
         $productData['gallery'] = $this->imagesUrlRepo->getProductImages($id);
-        $productData['attributes'] = $this->attributeSetService->getAllAtrributeSetByProductId($id);
+        $productData['attributes'] = $this->attributeSetService->getAllAttributeSetByProductId($id);
         return new Product($productData);
     }
 
     public function getAllProducts()
     {
-        $listOfProducts = [];
         $ids = $this->productRepo->getAllProductsIds();
-        foreach ($ids as $id) {
-            $listOfProducts[] = $this->getProductById($id);
-        }
-        return $listOfProducts;
+        return empty($ids) ? [] : array_map([$this, 'getProductById'], $ids);
     }
 
     public function getProductsByCategory(string $category)
     {
-        $listOfProducts = [];
         $category_id = $this->categoryRepo->getCategoryIdByName($category);
         $ids = $this->productRepo->getProductsIdsByCategory($category_id);
-        foreach ($ids as $id) {
-            $listOfProducts[] = $this->getProductById($id);
-        }
-        return $listOfProducts;
+        return empty($ids) ? [] : array_map([$this, 'getProductById'], $ids);
     }
 }

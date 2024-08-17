@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Service;
 
 use Entities\Attribute;
-use Repository\AttributeRepository;
 use Repository\RepositoryContainer;
 
 class AttributeService
@@ -20,12 +19,8 @@ class AttributeService
 
     public function getAllAttributesByAttributeSetId($attributeSetId): array
     {
-        $listOfAttributes = [];
         $ids = $this->attributeRepo->getAttributesIdsByAttributeSetId($attributeSetId);
-        foreach ($ids as $id) {
-            $listOfAttributes[] = $this->getAttributeById($id);
-        }
-        return $listOfAttributes;
+        return empty($ids) ? [] : array_map([$this, 'getAttributeById'], $ids);
     }
 
     public function getAttributeById($id): Attribute

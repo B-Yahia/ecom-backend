@@ -40,4 +40,10 @@ class OrderService
             'orderlines' => $listOfOrderLines,
         ]);
     }
+
+    public function getAllOrders(): array
+    {
+        $ids = $this->orderRepo->getOrdersIds();
+        return empty($ids) ? [] : array_map([$this, 'getOrderById'], $ids);
+    }
 }

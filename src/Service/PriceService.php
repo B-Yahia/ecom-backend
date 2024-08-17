@@ -20,13 +20,8 @@ class PriceService
 
     public function getAllPricesByProductID($productId)
     {
-        $listofPrices = [];
         $ids = $this->priceRepo->getProductPricesIds($productId);
-        foreach ($ids as $priceId) {
-            $priceData = $this->getPriceById($priceId);
-            array_push($listofPrices, $priceData);
-        }
-        return $listofPrices;
+        return empty($ids) ? [] : array_map([$this, 'getPriceById'], $ids);
     }
 
     public function getPriceById($id)

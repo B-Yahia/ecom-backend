@@ -4,17 +4,8 @@ declare(strict_types=1);
 
 namespace Repository;
 
-use Config\Setup;
-
-class PriceRepository
+class PriceRepository extends AbstractRepository
 {
-    private $conn;
-
-    public function __construct()
-    {
-        $this->conn = Setup::database();
-    }
-
     public function getProductPricesIds($id): array
     {
         return $this->conn->query('select id from Prices where product_id=:id', ['id' => $id])->findAllColumn();

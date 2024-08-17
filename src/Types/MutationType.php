@@ -23,7 +23,6 @@ class MutationType extends ObjectType
                     'resolve' => function ($root, $args) {
                         $orderService = ServiceContainer::order();
                         $id = $orderService->saveOrder($args['order']);
-                        echo var_dump($id);
                         return $orderService->getOrderById($id);
                     }
                 ]

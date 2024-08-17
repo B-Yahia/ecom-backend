@@ -4,16 +4,8 @@ declare(strict_types=1);
 
 namespace Repository;
 
-use Config\Setup;
-
-class AttributeRepository
+class AttributeRepository extends AbstractRepository
 {
-    private $conn;
-
-    public function __construct()
-    {
-        $this->conn = Setup::database();
-    }
 
     public function getAttributeById($id)
     {

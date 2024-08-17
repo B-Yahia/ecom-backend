@@ -4,17 +4,8 @@ declare(strict_types=1);
 
 namespace Repository;
 
-use Config\Setup;
-
-class ProductRepository
+class ProductRepository extends AbstractRepository
 {
-    private $conn;
-
-    public function __construct()
-    {
-        $this->conn = Setup::database();
-    }
-
     public function getAllProductsIds()
     {
         return $this->conn->query('Select id from Products')->findAllColumn();

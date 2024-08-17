@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Service;
 
-use Config\Database;
 use Entities\AttributeSet;
-use Repository\AttributeSetRepository;
 use Repository\RepositoryContainer;
 
 class AttributeSetService
@@ -20,14 +18,10 @@ class AttributeSetService
         $this->attributeSetRepo = RepositoryContainer::attributeSet();
     }
 
-    public function getAllAtrributeSetByProductId($productsId): array
+    public function getAllAttributeSetByProductId($productsId): array
     {
-        $listOfAttributeSets = [];
         $ids = $this->attributeSetRepo->getAttributeSetsIdsByProductId($productsId);
-        foreach ($ids as $id) {
-            $listOfAttributeSets[] = $this->getAttributeSetById($id);
-        };
-        return $listOfAttributeSets;
+        return empty($ids) ? [] : array_map([$this, 'getAttributeSetById'], $ids);
     }
 
     public function getAttributeSetById($id): AttributeSet
