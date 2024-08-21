@@ -9,7 +9,7 @@ class OrderlineRepository extends AbstractRepository
 
     public function saveOrderLine($data)
     {
-        return $this->conn->query('INSERT into Orderlines (product_id,count,order_id)values(:product_id,:units,:order_id)', [
+        return $this->conn->query('INSERT into Orderlines (product_id,units,order_id)values(:product_id,:units,:order_id)', [
             'product_id' => $data['product_id'],
             'units' => $data['units'],
             'order_id' => $data['order_id']
@@ -17,7 +17,7 @@ class OrderlineRepository extends AbstractRepository
     }
     public function getOrderlineById($id)
     {
-        return $this->conn->query('Select product_id,count from Orderlines where id=:id', ['id' => $id])->find();
+        return $this->conn->query('Select product_id,units from Orderlines where id=:id', ['id' => $id])->find();
     }
     public function getOrderlinesIdsByOrderId($id)
     {
@@ -25,6 +25,6 @@ class OrderlineRepository extends AbstractRepository
     }
     public function getNumberOfUnitsInOrderline($id)
     {
-        return $this->conn->query('Select count from Orderlines where id=:id', ['id' => $id])->findColumn();
+        return $this->conn->query('Select units from Orderlines where id=:id', ['id' => $id])->findColumn();
     }
 }

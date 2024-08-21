@@ -57,8 +57,6 @@ class QueryType extends ObjectType
                         return $orderService->getAllOrders();
                     }
                 ]
-
-
             ]
         ];
         parent::__construct($config);

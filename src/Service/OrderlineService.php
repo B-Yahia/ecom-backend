@@ -30,7 +30,7 @@ class OrderlineService
         foreach ($data['orderline']['selectedAttributes'] as $selectedAttribute) {
             $this->selectedAttributeService->saveSelectedAttribute([
                 'orderline_id' => $id,
-                'attribute_set_id' => $selectedAttribute['attributeSet']['id'],
+                'attributeSet_id' => $selectedAttribute['attributeSet']['id'],
                 'attribute_id' => $selectedAttribute['attribute']['id']
             ]);
         }
@@ -43,7 +43,7 @@ class OrderlineService
         $listOfSelectedAttributes = $this->selectedAttributeService->getAllSelectedAttributesByOrderlineId($id);
         return new OrderLine([
             'id' => $id,
-            'units' => $orderlineData['count'],
+            'units' => $orderlineData['units'],
             'product' => $product,
             'selectedAttributes' => $listOfSelectedAttributes
         ]);

@@ -39,8 +39,8 @@ class SelectedAttributeService
         return array_map(function ($item) {
             return $this->getSelectedAttributeByAttributeAndAttributeSetIDS([
                 'attribute_id' => $item['attribute_id'],
-                'attributeSet_id' => $item['attribute_set_id'],
+                'attributeSet_id' => $item['attributeSet_id'],
             ]);
-        }, $selectedAttributesData);
+        }, $selectedAttributesData);;
     }
 }
