@@ -9,7 +9,6 @@ use Dotenv\Dotenv;
 class Setup
 {
     private static $conn;
-    private static $allowed_methods = ['GET', 'POST'];
 
     public static function cros(string $url): void
     {
@@ -27,16 +26,6 @@ class Setup
             }
             exit(0);
         }
-        // header("Access-Control-Allow-Origin: " . $url);
-        // header('Access-Control-Allow-Credentials: true');
-        // header('Access-Control-Max-Age: 86400');
-        // header("Access-Control-Allow-Methods: GET, POST");
-        // header("Access-Control-Allow-Headers: Content-Type, Authorization");
-        // if (!in_array($_SERVER['REQUEST_METHOD'], self::$allowed_methods)) {
-        //     header('HTTP/1.1 405 Method Not Allowed');
-        //     header('Allow: GET, POST');
-        //     exit;
-        // }
     }
 
     public static function database(): Database
