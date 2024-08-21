@@ -7,7 +7,7 @@ use Controller\GraphQL;
 
 require __DIR__ . "/../vendor/autoload.php";
 
-Setup::cros('*');
+Setup::cros('https://e-com-test.netlify.app/');
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->post('/graphql', [GraphQL::class, 'handle']);
