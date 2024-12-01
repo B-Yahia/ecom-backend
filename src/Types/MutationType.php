@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Types;
 
 use GraphQL\Type\Definition\ObjectType;
-use GraphQL\Type\Definition\Type;
 use InputTypes\InputTypeContainer;
 use Service\ServiceContainer;
 

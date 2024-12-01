@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Service;
 
-use Config\Database;
+use Entities\ClothesProduct;
 use Entities\Product;
-use Repository\CategoryRepository;
-use Repository\ImagesUrlRepository;
-use Repository\ProductRepository;
+use Entities\TechProduct;
 use Repository\RepositoryContainer;
 
 class ProductService
@@ -35,7 +33,19 @@ class ProductService
         $productData['prices'] = $this->priceService->getAllPricesByProductID($id);
         $productData['gallery'] = $this->imagesUrlRepo->getProductImages($id);
         $productData['attributes'] = $this->attributeSetService->getAllAttributeSetByProductId($id);
-        return new Product($productData);
+        return $this->createProductInstance($productData);
+    }
+
+    private function createProductInstance(array $productData): Product
+    {
+        switch ($productData['category']) {
+            case 'tech':
+                return new TechProduct($productData);
+            case 'clothes':
+                return new ClothesProduct($productData);
+            default:
+                throw new \InvalidArgumentException("Unknown product category: {$productData['category']}");
+        }
     }
 
     public function getAllProducts()

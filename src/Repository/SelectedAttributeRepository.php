@@ -8,15 +8,15 @@ class SelectedAttributeRepository extends AbstractRepository
 {
     public function saveSelectedAttribute($data)
     {
-        $this->conn->query('INSERT into SelectedAttributes (orderline_id ,attribute_id ,attributeSet_id ) values (:orderline_id ,:attribute_id ,:attributeSet_id )', [
+        $this->conn->query('INSERT into SelectedAttributes (orderline_id ,attribute_id ,attribute_set_id ) values (:orderline_id ,:attribute_id ,:attribute_set_id )', [
             'orderline_id' => $data['orderline_id'],
             'attribute_id' => $data['attribute_id'],
-            'attributeSet_id' => $data['attributeSet_id'],
+            'attribute_set_id' => $data['attribute_set_id'],
         ]);
     }
 
     public function getAllSelectedAttributeByOrderlineId($id): array
     {
-        return $this->conn->query('Select attribute_id ,attributeSet_id from SelectedAttributes where orderline_id=:id', ['id' => $id])->findAll();
+        return $this->conn->query('Select attribute_id ,attribute_set_id from SelectedAttributes where orderline_id=:id', ['id' => $id])->findAll();
     }
 }

@@ -6,7 +6,7 @@ namespace Entities;
 
 use GraphQL\Utils\Utils;
 
-class Product
+abstract class Product
 {
     public $id;
     public string $name;
@@ -21,5 +21,8 @@ class Product
     public function __construct(array $data)
     {
         Utils::assign($this, $data);
+        $this->setCategory();
     }
+
+    abstract protected function setCategory();
 }

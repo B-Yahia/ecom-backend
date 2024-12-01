@@ -10,7 +10,6 @@ final class TypeContainer
     private static $currency;
     private static $attribute;
     private static $attributeSet;
-
     private static $product;
     private static $orderline;
     private static $selectedAttributes;

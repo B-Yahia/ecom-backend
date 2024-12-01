@@ -6,7 +6,7 @@ namespace Entities;
 
 use GraphQL\Utils\Utils;
 
-class AttributeSet
+abstract class AttributeSet
 {
     public $id;
     public string $name;
@@ -16,5 +16,7 @@ class AttributeSet
     public function __construct(array $data)
     {
         Utils::assign($this, $data);
+        $this->setType();
     }
+    abstract protected function setType();
 }

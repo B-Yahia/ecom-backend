@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Service;
 
 use Entities\AttributeSet;
+use Entities\SwatchAttributeSet;
+use Entities\TextAttributeSet;
 use Repository\RepositoryContainer;
 
 class AttributeSetService
@@ -28,6 +30,18 @@ class AttributeSetService
     {
         $attributeSet = $this->attributeSetRepo->getAttributeSetById($id);
         $attributeSet['items'] = $this->attributeService->getAllAttributesByAttributeSetId($attributeSet['id']);
-        return new AttributeSet($attributeSet);
+        return $this->createAttributeSetInstance($attributeSet);
+    }
+
+    private function createAttributeSetInstance(array $attributeSet): AttributeSet
+    {
+        switch ($attributeSet['type']) {
+            case 'text':
+                return new TextAttributeSet($attributeSet);
+            case 'swatch':
+                return new SwatchAttributeSet($attributeSet);
+            default:
+                throw new \InvalidArgumentException("Unknown attribute set type: {$attributeSet['type']}");
+        }
     }
 }

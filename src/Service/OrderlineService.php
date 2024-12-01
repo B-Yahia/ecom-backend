@@ -7,8 +7,6 @@ namespace Service;
 use Entities\OrderLine;
 use Repository\RepositoryContainer;
 
-use function PHPSTORM_META\map;
-
 class OrderlineService
 {
     private $orderlineRepo;
@@ -30,7 +28,7 @@ class OrderlineService
         foreach ($data['orderline']['selectedAttributes'] as $selectedAttribute) {
             $this->selectedAttributeService->saveSelectedAttribute([
                 'orderline_id' => $id,
-                'attributeSet_id' => $selectedAttribute['attributeSet']['id'],
+                'attribute_set_id' => $selectedAttribute['attributeSet']['id'],
                 'attribute_id' => $selectedAttribute['attribute']['id']
             ]);
         }

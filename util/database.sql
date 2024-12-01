@@ -58,15 +58,15 @@ create table Attributes (
     id bigint unsigned auto_increment primary key , 
     value text not null , 
     displayValue text not null, 
-    attributeSet_id bigint unsigned not null , 
-    foreign key (attributeSet_id) references AttributeSets(id)
+    attribute_set_id bigint unsigned not null , 
+    foreign key (attribute_set_id) references AttributeSets(id)
     );
 
 create table SelectedAttributes ( 
-    attributeSet_id bigint unsigned not null,
+    attribute_set_id bigint unsigned not null,
     attribute_id bigint unsigned not null,
     orderline_id bigint unsigned not null,
-    foreign key (attributeSet_id) references AttributeSets(id),
+    foreign key (attribute_set_id) references AttributeSets(id),
     foreign key (attribute_id) references Attributes(id),
     foreign key (orderline_id) references Orderlines (id)
 );

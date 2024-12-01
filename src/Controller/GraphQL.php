@@ -41,14 +41,13 @@ class GraphQL
 
     public static function home()
     {
-        // echo "<h1> You can see bellow the list of the Orders </h1>";
         $orderService = new OrderService();
         $orders = $orderService->getAllOrders();
         include __DIR__ . "/../../public/orders.php";
-        // $data = "";
-        // foreach ($orders as $order) {
-        //     $data .= "<h4>Order id is " . $order->id . " and total is " . $order->total . "</h4>";
-        // }
-        // echo $data;
+    }
+
+    public static function write()
+    {
+        include __DIR__ . "/../../public/write_data.php";
     }
 }

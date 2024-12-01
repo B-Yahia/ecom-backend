@@ -7,12 +7,16 @@ use Controller\GraphQL;
 
 require __DIR__ . "/../vendor/autoload.php";
 
+
 Setup::cros('*');
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->post('/graphql', [GraphQL::class, 'handle']);
     $r->get('/graphql', [GraphQL::class, 'handle']);
     $r->get('/', [GraphQL::class, 'home']);
+    $r->post('/', [GraphQL::class, 'home']);
+    $r->get('/write', [GraphQL::class, 'write']);
+    $r->post('/write', [GraphQL::class, 'write']);
 });
 
 $routeInfo = $dispatcher->dispatch(

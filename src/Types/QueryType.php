@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Types;
 
-use Entities\Currency;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
-use Repository\CurrencyRepository;
 use Service\ServiceContainer;
 
 use function PHPSTORM_META\type;
@@ -25,6 +23,7 @@ class QueryType extends ObjectType
                     ],
                     'resolve' => function ($root, $args) {
                         $productService = ServiceContainer::product();
+                        echo "hey";
                         return $productService->getProductById($args['id']);
                     }
                 ],

@@ -7,8 +7,6 @@ namespace Types;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 
-use function PHPSTORM_META\type;
-
 require __DIR__ . "/../../vendor/autoload.php";
 
 class ProductType extends ObjectType
