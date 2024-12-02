@@ -130,7 +130,7 @@ mutation ($order: OrderInput) {
 ## Deployment
 
 The GraphQL API is deployed on my VPS and accessible at: 
-  - [https://blog-ql-1.netlify.app/](https://e-com-test.netlify.app/)
+  - [https://e-com-test.netlify.app/](https://e-com-test.netlify.app/)
 
 ## Configuring a Virtual Host
 
