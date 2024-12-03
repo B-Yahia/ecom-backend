@@ -119,7 +119,7 @@ mutation ($order: OrderInput) {
 
   1. Postman
 
-  - Use the GraphQL endpoint: [https://ecom.apitestdomain.site/graphql](https://ecom.apitestdomain.site/graphql) or http://localhost:8000 if the deployment was locally.
+  - Use the GraphQL endpoint: [https://ecom.apitestdomain.site/graphql](https://ecom.apitestdomain.site/graphql) or http://localhost:8000/graphql if the deployment is locally.
   - Send queries and mutations in the request body.
   
 2. React Frontend
